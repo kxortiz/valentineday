@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz San Valentín</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4c2c2; /* Color palo rosa */
+            flex-direction: column;
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .message {
+            font-size: 2em;
+            font-weight: bold;
+            color: rgb(0, 0, 0);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .sub-message {
+            font-size: 1.5em;
+            font-style: italic;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            margin-bottom: 20px;
+        }
+
+        .button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #e60073;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .button:hover {
+            background-color: #b3005e;
+        }
+
+        .background {
+            background-image: url('./amor-1200x675.jpeg');
+            background-size: cover;
+            background-position: center;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        /* Contenedor de la lluvia de corazones */
+        .hearts-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        /* Corazones blancos */
+        .heart {
+            position: absolute;
+            color: white;
+            font-size: 20px;
+            opacity: 0.8;
+            animation: fall linear infinite;
+        }
+
+        /* Animación de caída */
+        @keyframes fall {
+            0% {
+                transform: translateY(-10vh);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background"></div>
+    
+    <!-- Lluvia de corazones -->
+    <div class="hearts-container"></div>
+
+    <div class="message">Tengo un regalo para ti  &lt;3</div>
+    <div class="sub-message">Dale click👇👇👇👇.</div>
+    <a href="index.html" class="button">❤️❤️❤️❤️</a>
+
+    <script>
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.innerHTML = "&#10084;"; // Corazón blanco
+            heart.classList.add("heart");
+
+            let size = Math.random() * 20 + 10; // Tamaño entre 10px y 30px
+            heart.style.fontSize = size + "px";
+            
+            heart.style.left = Math.random() * 100 + "vw"; // Posición aleatoria
+            heart.style.animationDuration = Math.random() * 3 + 2 + "s"; // Duración entre 2s y 5s
+
+            document.querySelector(".hearts-container").appendChild(heart);
+
+            // Eliminar el corazón después de la animación
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        setInterval(createHeart, 300); // Generar corazones cada 300ms
+    </script>
+</body>
+</html>
